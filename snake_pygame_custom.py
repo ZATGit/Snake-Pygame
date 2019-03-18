@@ -22,6 +22,29 @@ class Box(pygame.sprite.Sprite):
         self.change_x = -1
         self.change_y = -1
 
+
+
+def game_events(x,y):
+    """Controls Snake Movement."""
+    for event in pygame.event.get():
+        if event.type == pygame.QUIT:
+            return True
+    # Snake Movement (Up,Down,Left,Right)
+        if event.type == pygame.KEYDOWN:
+            if event.key == pygame.K_w:
+                x_change = 0
+                y_change = (snake_box_height + snake_box_margin) * -1
+            if event.key == pygame.K_s:
+                x_change = 0
+                y_change = (snake_box_height + snake_box_margin)
+            if event.key == pygame.K_a:
+                x_change = (snake_box_width + snake_box_margin) * -1
+                y_change = 0
+            if event.key == pygame.K_d:
+                x_change = (snake_box_width + snake_box_margin)
+                y_change = 0
+    return x_change,y_change
+
 def main():
 
     pygame.init()
@@ -47,32 +70,15 @@ def main():
         snake_body.append(snake_box)
         all_sprites_list.add(snake_box)
 
+
     # Manage Screen Update Speed
     clock = pygame.time.Clock()
 
     done = False
 
     while not done:
-        #Event Processing
-        #Quit Game
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                done = True
 
-        #Snake Movement (Up,Down,Left,Right)
-            if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_w:
-                    x_change = 0
-                    y_change = (snake_box_height + snake_box_margin) * -1
-                if event.key == pygame.K_s:
-                    x_change = 0
-                    y_change = (snake_box_height + snake_box_margin)
-                if event.key == pygame.K_a:
-                    x_change = (snake_box_width + snake_box_margin) * -1
-                    y_change = 0
-                if event.key == pygame.K_d:
-                    x_change = (snake_box_width + snake_box_margin)
-                    y_change = 0
+        game_events(x_change,y_change)
 
         score = 0
 
@@ -88,6 +94,8 @@ def main():
         #Insert New Box Item to List
         snake_body.insert(0,snake_box)
         all_sprites_list.add(snake_box)
+
+
 
 
         # Screen Fill Background
