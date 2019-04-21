@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/snake_pygame.iml" filepath="$PROJECT_DIR$/.idea/snake_pygame.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../snowman_pygame/.idea/snowman_pygame.iml" filepath="$PROJECT_DIR$/../snowman_pygame/.idea/snowman_pygame.iml" />
     </modules>
   </component>
 </project>
